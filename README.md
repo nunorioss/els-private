@@ -20,3 +20,4 @@ When creating a Java executable, it is necessary to specify which class that con
 To test the program, run ``gradle test``. This will execute the build, and run the JUnit tests in the ``test`` folder. If you want to see output printed during the tests, use the flag ``-i`` (i.e., ``gradle test -i``).
 You can also see a test report by opening ``build/reports/tests/test/index.html``.
 
+# els-private
