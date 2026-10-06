@@ -1,0 +1,105 @@
+{
+    "animations": {
+        // ---- Body-part verbs -------------------------------------------------
+        "raise knee":     [[["rotate", "left_hip", -45, 300], ["rotate", "left_knee", 60, 300]]],
+        "stretch calf":   [[["rotate", "left_knee", 0, 250]]],
+        "set foot down":  [[["rotate", "left_hip", 0, 250]]],
+
+        "raise right arm": [[["rotate", "right_shoulder", -145, 400], ["rotate", "right_elbow", -55, 400]]],
+        "lower right arm": [[["rotate", "right_shoulder", 0, 350], ["rotate", "right_elbow", 0, 350]]],
+
+        "lean left":   [[["rotate", "torso", -20, 300]]],
+        "lean right":  [[["rotate", "torso", 20, 300]]],
+        "stand straight": [[["rotate", "torso", 0, 300]]],
+
+        "hands up":    [[["rotate", "left_shoulder", -170, 500], ["rotate", "right_shoulder", 170, 500]]],
+        "hands down":  [[["rotate", "left_shoulder", 0, 400], ["rotate", "right_shoulder", 0, 400]]],
+
+        // ---- Composed verbs --------------------------------------------------
+        "take one step": [
+            ["raise knee"],
+            ["stretch calf"],
+            ["set foot down"]
+        ],
+
+        "wave once": [
+            [["rotate", "right_elbow", -15, 200]],
+            [["rotate", "right_elbow", -75, 200]]
+        ],
+        "wave": [
+            ["raise right arm"],
+            ["wave once", 3],
+            ["lower right arm"]
+        ],
+
+        "sway": [["lean left"], ["lean right"]],
+
+        "walk": [
+            "Gait cycle from the professor's WalkExample, moving 10px forward per phase",
+            [
+                ["rotate", "left_hip", -28, 220], ["rotate", "left_knee", 5, 220],
+                ["rotate", "right_hip", 24, 220], ["rotate", "right_knee", 35, 220],
+                ["rotate", "right_shoulder", -30, 220], ["rotate", "left_shoulder", 25, 220],
+                ["move", 10, 3, 220]
+            ],
+            [
+                ["rotate", "left_hip", -2, 220], ["rotate", "left_knee", 0, 220],
+                ["rotate", "right_hip", -8, 220], ["rotate", "right_knee", 60, 220],
+                ["rotate", "right_shoulder", 0, 220], ["rotate", "left_shoulder", 0, 220],
+                ["move", 10, -3, 220]
+            ],
+            [
+                ["rotate", "right_hip", -28, 220], ["rotate", "right_knee", 5, 220],
+                ["rotate", "left_hip", 24, 220], ["rotate", "left_knee", 35, 220],
+                ["rotate", "left_shoulder", -30, 220], ["rotate", "right_shoulder", 25, 220],
+                ["move", 10, 3, 220]
+            ],
+            [
+                ["rotate", "right_hip", -2, 220], ["rotate", "right_knee", 0, 220],
+                ["rotate", "left_hip", -8, 220], ["rotate", "left_knee", 60, 220],
+                ["rotate", "left_shoulder", 0, 220], ["rotate", "right_shoulder", 0, 220],
+                ["move", 10, -3, 220]
+            ]
+        ],
+
+        "jump": [
+            [
+                ["rotate", "left_hip", 30, 250], ["rotate", "left_knee", -50, 250],
+                ["rotate", "right_hip", 30, 250], ["rotate", "right_knee", -50, 250],
+                ["move", 0, 20, 250]
+            ],
+            [
+                ["rotate", "left_hip", -10, 200], ["rotate", "left_knee", 0, 200],
+                ["rotate", "right_hip", -10, 200], ["rotate", "right_knee", 0, 200],
+                ["rotate", "left_shoulder", -120, 200], ["rotate", "right_shoulder", -120, 200],
+                ["move", 0, -60, 200]
+            ],
+            [
+                ["rotate", "left_hip", 0, 250], ["rotate", "left_knee", 0, 250],
+                ["rotate", "right_hip", 0, 250], ["rotate", "right_knee", 0, 250],
+                ["rotate", "left_shoulder", 0, 250], ["rotate", "right_shoulder", 0, 250],
+                ["move", 0, 40, 250]
+            ]
+        ],
+
+        "dance": [
+            "Step 1: arms go up (500 ms) while the torso sways twice (1200 ms); the step lasts 1200 ms",
+            [["hands up"], ["sway", 2]],
+            "Step 2: everything back to neutral",
+            [["hands down"], ["stand straight"]]
+        ]
+    },
+
+    "timeline": [
+        ["walk", 2],
+        ["wave"],
+
+        "The two-step 'dance' runs in parallel with the single-step 'raise knee'. The step ends when the dance ends.",
+        [["dance"], ["raise knee"]],
+        ["stretch calf"],
+        ["set foot down"],
+
+        ["wait", 300],
+        ["jump"]
+    ]
+}

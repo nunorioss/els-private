@@ -2,22 +2,22 @@
     "animations": {
         "basic": [
             [
-                ["move",5,5,10],
-                ["rotate","leg",5,5]
+                ["move", 20, 0, 400],
+                ["rotate", "left_leg", -30, 400]
             ]
         ],
 
         "raise knee": [
             [
-                ["rotate","knee",5,5]
+                ["rotate", "right_knee", 60, 300]
             ]
         ],
 
-        "anime":  [
+        "anime": [
             "Nested animation",
             ["basic"],
 
-            "O composite não pode ir para dentro porque tem mais de um step",
+            "composite has more than one step, but it can still be used inside a step: it runs as a sequence in parallel with the other movements",
             ["composite"],
 
             "Nested steps",
@@ -25,38 +25,39 @@
                 ["basic"],
                 ["raise knee"]
             ]
-
-           
         ],
 
         "composite": [
-            
             ["basic"],
-            
+
             [
-                ["move", 15, 15, 10]
-            ],
-            
-            [
-                ["rotate","arm",5,5]
+                ["move", 20, 0, 400]
             ],
 
-            ["wait", 10] 
+            [
+                ["rotate", "left_arm", -90, 300]
+            ],
+
+            ["wait", 200]
         ]
     },
 
     "timeline": [
-        
-            ["basic"],
-            
-            [
-                ["move",15,15,10]
-            ],
-            
-            [
-                ["rotate","arm",5,5]
-            ],
+        ["basic"],
 
-            ["composite"]
+        [
+            ["move", 20, 0, 400]
+        ],
+
+        [
+            ["rotate", "right_arm", 90, 300]
+        ],
+
+        ["composite"],
+
+        [
+            ["anime"],
+            ["raise knee", 3]
+        ]
     ]
 }

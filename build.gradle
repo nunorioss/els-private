@@ -26,6 +26,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
 
     //! Add your dependencies here
+    // JSON parsing for the CP1 data-format DSL
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.2'
 }
 
 // Add JARs in folder 'libs' as dependencies
@@ -70,7 +72,7 @@ javafx {
 
 // Entry point of the program
 application {
-    mainClass.set('pt.up.fe.els2026.theatre.SimpleExample')
+    mainClass.set('pt.up.fe.els2026.Main')
 }
 run {
     jvmArgs(
