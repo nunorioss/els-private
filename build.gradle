@@ -1,0 +1,80 @@
+plugins {
+    // For runnable JARs
+    id 'application'
+    id 'distribution'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+
+// Java project
+apply plugin: 'java'
+
+// Java version
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+
+// Repositories providers
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testImplementation 'junit:junit:4.13.1'
+
+    //! Add your dependencies here
+}
+
+// Add JARs in folder 'libs' as dependencies
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+
+// Project sources
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+
+            srcDir 'src-lib'
+        }
+
+        resources {
+            srcDir 'src'
+
+            srcDir 'src-lib'
+        }
+
+    }
+
+    test {
+        java {
+            srcDir 'test'
+        }
+
+        resources {
+            srcDir 'test'
+        }
+    }
+
+}
+
+javafx {
+    version = "21.0.2"
+    modules = [ 'javafx.controls' ]
+}
+
+// Entry point of the program
+application {
+    mainClass.set('pt.up.fe.els2026.theatre.SimpleExample')
+}
+run {
+    jvmArgs(
+            '--enable-native-access=javafx.graphics',
+            '--sun-misc-unsafe-memory-access=allow'
+    )
+}

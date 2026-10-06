@@ -1,0 +1,12 @@
+animation dance:
+    rotate 
+    move
+    rotate
+
+
+
+start:
+    dance
+    rotate
+    move
+    dance

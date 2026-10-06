@@ -1,0 +1,18 @@
+/bin/
+.gradle/
+/build/
+/.settings/
+/run/
+/gradle/*
+gradlew
+gradlew.bat
+
+#IntelliJ
+
+/.idea/*
+
+# Class files
+**/*.class
+
+#Mac
+.DS_Store
